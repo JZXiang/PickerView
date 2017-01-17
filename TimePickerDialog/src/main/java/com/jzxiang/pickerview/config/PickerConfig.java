@@ -1,5 +1,7 @@
 package com.jzxiang.pickerview.config;
 
+import android.support.annotation.StringRes;
+
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.data.WheelCalendar;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
@@ -13,9 +15,9 @@ public class PickerConfig {
     public Type mType = DefaultConfig.TYPE;
     public int mThemeColor = DefaultConfig.COLOR;
 
-    public String mCancelString = DefaultConfig.CANCEL;
-    public String mSureString = DefaultConfig.SURE;
-    public String mTitleString = DefaultConfig.TITLE;
+    @StringRes public int mCancelString = DefaultConfig.CANCEL;
+    @StringRes public int mSureString = DefaultConfig.SURE;
+    @StringRes public int mTitleString = DefaultConfig.TITLE;
     public int mToolBarTVColor = DefaultConfig.TOOLBAR_TV_COLOR;
 
     public int mWheelTVNormalColor = DefaultConfig.TV_NORMAL_COLOR;
@@ -23,11 +25,12 @@ public class PickerConfig {
     public int mWheelTVSize = DefaultConfig.TV_SIZE;
     public boolean cyclic = DefaultConfig.CYCLIC;
 
-    public String mYear = DefaultConfig.YEAR;
-    public String mMonth = DefaultConfig.MONTH;
-    public String mDay = DefaultConfig.DAY;
-    public String mHour = DefaultConfig.HOUR;
-    public String mMinute = DefaultConfig.MINUTE;
+    @StringRes public int mYear = DefaultConfig.YEAR;
+    @StringRes public int mMonth = DefaultConfig.MONTH;
+    @StringRes public int mDay = DefaultConfig.DAY;
+    @StringRes public int mHour = DefaultConfig.HOUR;
+    @StringRes public int mMinute = DefaultConfig.MINUTE;
+    public int mTimeGap = DefaultConfig.TIMEGAP;
 
     /**
      * The min timeMillseconds

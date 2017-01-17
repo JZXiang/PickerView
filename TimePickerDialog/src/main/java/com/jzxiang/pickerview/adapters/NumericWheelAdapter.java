@@ -17,7 +17,10 @@
 package com.jzxiang.pickerview.adapters;
 
 import android.content.Context;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
+
+import com.jzxiang.pickerview.utils.PickerContants;
 
 /**
  * Numeric Wheel adapter.
@@ -34,47 +37,23 @@ public class NumericWheelAdapter extends AbstractWheelTextAdapter {
      */
     private static final int DEFAULT_MIN_VALUE = 0;
 
+    /**
+     * The default time gep value
+     */
+    private static final int DEFAULT_MIN_TIME_GEP = 1;
+
+    Context context;
     // Values
     private int minValue;
     private int maxValue;
+    private int timeGap = DEFAULT_MIN_TIME_GEP;
 
     // format
     private String format;
     //unit
-    private String unit;
-
-
-    /**
-     * Constructor
-     *
-     * @param context the current context
-     */
-    public NumericWheelAdapter(Context context) {
-        this(context, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE);
-    }
-
-    /**
-     * Constructor
-     *
-     * @param context  the current context
-     * @param minValue the wheel min value
-     * @param maxValue the wheel max value
-     */
-    public NumericWheelAdapter(Context context, int minValue, int maxValue) {
-        this(context, minValue, maxValue, null);
-    }
-
-    /**
-     * Constructor
-     *
-     * @param context  the current context
-     * @param minValue the wheel min value
-     * @param maxValue the wheel max value
-     * @param format   the format string
-     */
-    public NumericWheelAdapter(Context context, int minValue, int maxValue, String format) {
-        this(context, minValue, maxValue, format, null);
-    }
+    @StringRes private int unit;
+    //type
+    private int type;
 
     /**
      * Constructor
@@ -85,20 +64,48 @@ public class NumericWheelAdapter extends AbstractWheelTextAdapter {
      * @param format   the format string
      * @param unit     the wheel unit value
      */
-    public NumericWheelAdapter(Context context, int minValue, int maxValue, String format, String unit) {
+    public NumericWheelAdapter(Context context, int minValue, int maxValue, String format, @StringRes int unit, int type) {
         super(context);
+        this.context = context;
         this.minValue = minValue;
         this.maxValue = maxValue;
         this.format = format;
         this.unit = unit;
+        this.type = type;
+    }
+
+    /**
+     * Constructor
+     *
+     * @param context  the current context
+     * @param minValue the wheel min value
+     * @param maxValue the wheel max value
+     * @param format   the format string
+     * @param unit     the wheel unit value
+     * @param type     the wheel type value
+     * @param type     the wheel type value
+     */
+    public NumericWheelAdapter(Context context, int minValue, int maxValue, String format, @StringRes int unit, int type, int timeGap) {
+        super(context);
+        this.context = context;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
+        this.format = format;
+        this.unit = unit;
+        this.type = type;
+        this.timeGap = timeGap;
     }
 
     @Override
     public CharSequence getItemText(int index) {
         if (index >= 0 && index < getItemsCount()) {
             int value = minValue + index;
+
+            if(type == PickerContants.MINUTE) {
+               value = minValue + (index * timeGap);
+            }
             String text = !TextUtils.isEmpty(format) ? String.format(format, value) : Integer.toString(value);
-            text = TextUtils.isEmpty(unit) ? text : text + unit;
+            text = TextUtils.isEmpty(context.getString(unit)) ? text : text + context.getString(unit);
 
             return text;
         }
@@ -107,8 +114,10 @@ public class NumericWheelAdapter extends AbstractWheelTextAdapter {
 
     @Override
     public int getItemsCount() {
-        return maxValue - minValue + 1;
+        if(type == PickerContants.MINUTE) {
+            return (( maxValue - minValue) / timeGap) + 1;
+        } else {
+            return maxValue - minValue + 1;
+        }
     }
-
-
 }
