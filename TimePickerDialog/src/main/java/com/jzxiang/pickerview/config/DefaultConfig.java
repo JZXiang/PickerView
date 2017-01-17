@@ -1,5 +1,8 @@
 package com.jzxiang.pickerview.config;
 
+import android.support.annotation.StringRes;
+
+import com.jzxiang.pickerview.R;
 import com.jzxiang.pickerview.data.Type;
 
 /**
@@ -13,14 +16,15 @@ public class DefaultConfig {
     public static final int TV_SELECTOR_COLOR = 0XFF404040;
     public static final int TV_SIZE = 12;
     public static final boolean CYCLIC = true;
-    public static String CANCEL = "取消";
-    public static String SURE = "确定";
-    public static String TITLE = "TimePicker";
-    public static String YEAR = "年";
-    public static String MONTH = "月";
-    public static String DAY = "日";
-    public static String HOUR = "时";
-    public static String MINUTE = "分";
+    @StringRes public static int CANCEL = R.string.picker_cancel;
+    @StringRes public static int SURE =  R.string.picker_sure;
+    @StringRes public static int TITLE = R.string.picker_title;
+    @StringRes public static int YEAR =  R.string.picker_year;
+    @StringRes public static int MONTH =  R.string.picker_month;
+    @StringRes public static int DAY =  R.string.picker_day;
+    @StringRes public static int HOUR =  R.string.picker_hour;
+    @StringRes public static int MINUTE =  R.string.picker_minute;
+    public static int TIMEGAP = 1;
 
 
 }

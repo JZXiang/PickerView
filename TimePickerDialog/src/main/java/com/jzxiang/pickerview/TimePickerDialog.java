@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -150,17 +151,17 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
             return this;
         }
 
-        public Builder setCancelStringId(String left) {
+        public Builder setCancelStringId(@StringRes int left) {
             mPickerConfig.mCancelString = left;
             return this;
         }
 
-        public Builder setSureStringId(String right) {
+        public Builder setSureStringId(@StringRes int  right) {
             mPickerConfig.mSureString = right;
             return this;
         }
 
-        public Builder setTitleStringId(String title) {
+        public Builder setTitleStringId(@StringRes int  title) {
             mPickerConfig.mTitleString = title;
             return this;
         }
@@ -205,33 +206,37 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
             return this;
         }
 
-        public Builder setYearText(String year){
+        public Builder setYearTextId(@StringRes int  year){
             mPickerConfig.mYear = year;
             return this;
         }
 
-        public Builder setMonthText(String month){
+        public Builder setMonthTextId(@StringRes int  month){
             mPickerConfig.mMonth = month;
             return this;
         }
 
-        public Builder setDayText(String day){
+        public Builder setDayTextId(@StringRes int  day){
             mPickerConfig.mDay = day;
             return this;
         }
 
-        public Builder setHourText(String hour){
+        public Builder setHourTextId(@StringRes int  hour){
             mPickerConfig.mHour = hour;
             return this;
         }
 
-        public Builder setMinuteText(String minute){
+        public Builder setMinuteTextId(@StringRes int  minute){
             mPickerConfig.mMinute = minute;
             return this;
         }
 
         public Builder setCallBack(OnDateSetListener listener) {
             mPickerConfig.mCallBack = listener;
+            return this;
+        }
+        public Builder setTimeGap(int timeGap) {
+            mPickerConfig.mTimeGap = timeGap;
             return this;
         }
 

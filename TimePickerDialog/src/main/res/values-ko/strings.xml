@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="picker_minute">분</string>
+	<string name="picker_cancel">취소</string>
+	<string name="picker_day">일</string>
+	<string name="picker_hour">시</string>
+	<string name="picker_month">월</string>
+	<string name="picker_sure">확인</string>
+	<string name="picker_title">시간선택</string>
+	<string name="picker_year">년</string>
+</resources>
