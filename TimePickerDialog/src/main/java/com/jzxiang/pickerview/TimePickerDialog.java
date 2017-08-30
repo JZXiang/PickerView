@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +58,20 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
 
     private void initialize(PickerConfig pickerConfig) {
         mPickerConfig = pickerConfig;
+    }
+
+    @Override
+    public void show(FragmentManager manager, String tag) {
+        Fragment fragment = manager.findFragmentByTag(tag);
+        FragmentTransaction ft = manager.beginTransaction();
+        if (fragment != null && fragment.isAdded()) {
+            ft.show(fragment);
+        } else {
+            if (fragment == null || !fragment.isAdded()) {
+                ft.add(this, tag);
+            }
+        }
+        ft.commitNow();
     }
 
     @NonNull
@@ -205,27 +222,27 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
             return this;
         }
 
-        public Builder setYearText(String year){
+        public Builder setYearText(String year) {
             mPickerConfig.mYear = year;
             return this;
         }
 
-        public Builder setMonthText(String month){
+        public Builder setMonthText(String month) {
             mPickerConfig.mMonth = month;
             return this;
         }
 
-        public Builder setDayText(String day){
+        public Builder setDayText(String day) {
             mPickerConfig.mDay = day;
             return this;
         }
 
-        public Builder setHourText(String hour){
+        public Builder setHourText(String hour) {
             mPickerConfig.mHour = hour;
             return this;
         }
 
-        public Builder setMinuteText(String minute){
+        public Builder setMinuteText(String minute) {
             mPickerConfig.mMinute = minute;
             return this;
         }
